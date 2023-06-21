@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "541149552427",
+    "project_id": "find-a-dental-clinic",
+    "storage_bucket": "find-a-dental-clinic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541149552427:android:f174cb5a2ecc2da065ef6e",
+        "android_client_info": {
+          "package_name": "com.example.find_a_dental_clinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541149552427-88b9f3399nt1o1mhk7e7ka705c2rfagn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0ODX40Jlg4oQaK6hzpXOUTuNIZ036TW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541149552427-88b9f3399nt1o1mhk7e7ka705c2rfagn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
