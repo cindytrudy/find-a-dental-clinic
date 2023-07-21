@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:find_a_dental_clinic/map/map.dart';
 
 class LocationInputScreen extends StatefulWidget {
   const LocationInputScreen({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class _LocationInputScreenState extends State<LocationInputScreen> {
 
   void saveLocation() {
     String location = _locationController.text;
-    // Process the location data (e.g., save it to a database, use it for navigation, etc.)
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -30,12 +29,12 @@ class _LocationInputScreenState extends State<LocationInputScreen> {
       ),
     );
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MapScreen(location: location),
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => MapScreen(location: location),
+    //   ),
+    // );
   }
 
   @override

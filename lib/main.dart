@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:find_a_dental_clinic/screens/welcome_screen.dart';
+import 'package:find_a_dental_clinic/ui/welcome_screen/welcome_screen.dart';
 
 void main(){
   runApp(MyApp());

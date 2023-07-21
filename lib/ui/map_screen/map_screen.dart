@@ -1,11 +1,10 @@
-import 'dart:async';
+import 'package:find_a_dental_clinic/ui/map_screen/nearby_places.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 
 class MapScreen extends StatefulWidget {
   final String location;
-
   const MapScreen({required this.location, Key? key}) : super(key: key);
 
   @override
@@ -14,7 +13,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController _mapController;
-  LatLng _initialCameraPosition = LatLng(0, 0);
+  final LatLng _initialCameraPosition = const LatLng(6.447946688582, 7.500136151162479);
 
   @override
   void dispose() {
@@ -28,35 +27,43 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _updateCameraPosition() async {
-
-    LatLng locationCoordinates = await convertLocationToCoordinates(widget.location);
-
-    _mapController.animateCamera(CameraUpdate.newLatLng(locationCoordinates));
+    List<Location> locations = await locationFromAddress(widget.location);
+    if (locations.isNotEmpty) {
+      Location firstLocation = locations.first;
+      LatLng locationCoordinates = LatLng(
+        firstLocation.latitude,
+        firstLocation.longitude,
+      );
+      _mapController.animateCamera(CameraUpdate.newLatLng(locationCoordinates));
+    }
   }
 
-  Future<LatLng> convertLocationToCoordinates(String location) async {
-
-    final addresses = await GeocodingPlatform.instance.locationFromAddress('FGCJ+3M8, Thinkers Corner 400103, Enugu');
-    if (addresses.isNotEmpty) {
-      final firstAddress = addresses.first;
-      return LatLng(firstAddress.latitude, firstAddress.longitude);
-    }
-    return LatLng(0, 0);
-
+  void _navigateToNearbyScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NearByClinicsScreen(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Map'),
+        title: Text('Map'),
       ),
       body: GoogleMap(
+        mapType: MapType.normal,
         onMapCreated: onMapCreated,
         initialCameraPosition: CameraPosition(
           target: _initialCameraPosition,
           zoom: 14.0,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _navigateToNearbyScreen,
+        child: Icon(Icons.arrow_forward),
       ),
     );
   }
